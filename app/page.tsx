@@ -6,7 +6,10 @@ const RootPage = () => {
             <div className="container">
                 <h1>Left</h1>
             </div>
-            <NewPostForm />
+            <div>
+                <NewPostForm />
+                <h6>Some thing here...</h6>
+            </div>
             <div className="container">
                 <h1>Right</h1>
             </div>

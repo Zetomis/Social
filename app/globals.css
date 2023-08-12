@@ -45,7 +45,7 @@ p {
 
 /* Button */
 .button {
-    @apply text cursor-pointer px-4 py-2 rounded font-semibold text-base;
+    @apply text cursor-pointer px-4 py-2 rounded font-semibold text-base disabled:cursor-not-allowed disabled:opacity-75;
 }
 .button__default {
     @apply button bg-slate-200 dark:bg-slate-800;

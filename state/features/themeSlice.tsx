@@ -12,7 +12,7 @@ const themeSlice = createSlice({
             const localTheme = localStorage.getItem("theme");
 
             if (localTheme) {
-                state.theme = JSON.parse(localTheme) as "light" | "dark";
+                state.theme = JSON.parse(localTheme);
             } else {
                 state.theme = "light";
             }
@@ -21,11 +21,11 @@ const themeSlice = createSlice({
             switch (state.theme) {
                 case "light":
                     state.theme = "dark";
-                    localStorage.setItem("theme", "dark");
+                    localStorage.setItem("theme", JSON.stringify("dark"));
                     return;
                 case "dark":
                     state.theme = "light";
-                    localStorage.setItem("theme", "light");
+                    localStorage.setItem("theme", JSON.stringify("light"));
                     return;
             }
         },
