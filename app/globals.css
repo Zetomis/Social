@@ -2,8 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Text Stuff */
+* {
+    @apply transition-all;
+}
 
+/* Text Stuff */
 .text {
     @apply text-slate-950 dark:text-slate-50;
 }
@@ -31,6 +34,15 @@ p {
     @apply text text-base font-normal;
 }
 
+/* Container && Layout */
+.layout {
+    @apply grid gap-x-4;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+.container {
+    @apply px-6 py-4 bg-slate-50 dark:bg-slate-950 rounded;
+}
+
 /* Button */
 .button {
     @apply text cursor-pointer px-4 py-2 rounded font-semibold text-base;
@@ -41,7 +53,7 @@ p {
 
 /* Input */
 .input {
-    @apply px-4 py-2 bg-slate-200 dark:bg-slate-800 rounded text placeholder:text-slate-950 placeholder:dark:text-slate-50 outline-none focus:outline-none;
+    @apply px-4 py-2 bg-slate-200 dark:bg-slate-800 rounded text placeholder:text-slate-800 placeholder:dark:text-slate-200 outline-none focus:outline-none;
 }
 
 /* Loading */

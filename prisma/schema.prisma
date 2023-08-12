@@ -12,4 +12,16 @@ model User {
   name  String
   email String @unique
   image String
+
+  posts Post[]
+}
+
+model Post {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+
+  content String
+  likes   String[]
+
+  user User @relation(fields: [userId], references: [id])
 }

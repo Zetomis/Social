@@ -2,8 +2,9 @@
 
 import { signIn, signOut, useSession } from "next-auth/react";
 import Logo from "../widgets/Logo";
-import UserImageWidget from "../widgets/UserImageWidget";
+import UserImageAndNameWidget from "../widgets/UserImageAndNameWidget";
 import SearchBar from "../widgets/SearchBar";
+import ThemeToogle from "../widgets/ThemeToogle";
 
 const Navbar = () => {
     const { status } = useSession();
@@ -15,7 +16,8 @@ const Navbar = () => {
                 {status === "authenticated" ? (
                     <>
                         <SearchBar />
-                        <UserImageWidget />
+                        <UserImageAndNameWidget />
+                        <ThemeToogle />
                         <button
                             className="button__default"
                             onClick={() => signOut()}
@@ -24,12 +26,15 @@ const Navbar = () => {
                         </button>
                     </>
                 ) : (
-                    <button
-                        className="button__default"
-                        onClick={() => signIn("google")}
-                    >
-                        Sign In
-                    </button>
+                    <>
+                        <ThemeToogle />
+                        <button
+                            className="button__default"
+                            onClick={() => signIn("google")}
+                        >
+                            Sign In
+                        </button>
+                    </>
                 )}
             </div>
         </div>
