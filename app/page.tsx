@@ -1,4 +1,5 @@
 import NewPostForm from "@/components/previews/NewPostForm";
+import PostsDisplay from "@/components/previews/PostsDisplay";
 
 const RootPage = () => {
     return (
@@ -9,6 +10,7 @@ const RootPage = () => {
             <div>
                 <NewPostForm />
                 <h6>Some thing here...</h6>
+                <PostsDisplay />
             </div>
             <div className="container">
                 <h1>Right</h1>

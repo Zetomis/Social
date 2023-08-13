@@ -4,11 +4,15 @@ import UserImageWidget from "../widgets/UserImageWidget";
 import HorizonDivider from "../generals/HorizonDivider";
 import { FormEvent, useState } from "react";
 import { newPost } from "@/libs/actions/post.actions";
+import { useAppDispatch } from "@/state/hooks";
+import { addNewPost } from "@/state/features/postsSlice";
 
 const NewPostForm = () => {
     const { data: session, status } = useSession();
     const [content, setContent] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+
+    const dispatch = useAppDispatch();
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -16,7 +20,10 @@ const NewPostForm = () => {
         setIsLoading(true);
 
         try {
-            await newPost(content);
+            const post = await newPost(content);
+            if (post && !(post instanceof Error)) {
+                dispatch(addNewPost({ post: post }));
+            }
         } catch (error) {
             console.log(error);
         }

@@ -9,8 +9,6 @@ const ThemeToogle = () => {
     const theme = useAppSelector((state) => state.theme.theme);
     const dispatch = useAppDispatch();
 
-    console.log(theme);
-
     switch (theme) {
         case "light":
             return (
