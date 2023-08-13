@@ -25,7 +25,12 @@ export const getMultiplePosts = createAsyncThunk(
 
 export const getMorePosts = createAsyncThunk(
     "posts/getMorePosts",
-    async (_, thunkAPI) => {}
+    async (_, { getState }) => {
+        const state = getState() as { posts: initialInterface };
+        state.posts.currentPage += 1;
+        const data = await getPosts(state.posts.currentPage);
+        return data;
+    }
 );
 
 const postsSlice = createSlice({
@@ -33,7 +38,7 @@ const postsSlice = createSlice({
     initialState,
     reducers: {
         addNewPost: (state, action: PayloadAction<{ post: Post }>) => {
-            state.posts.push(action.payload.post);
+            state.posts.unshift(action.payload.post);
         },
     },
     extraReducers: (builder) =>
@@ -43,6 +48,15 @@ const postsSlice = createSlice({
             })
             .addCase(getMultiplePosts.fulfilled, (state, action) => {
                 state.posts = action.payload;
+                state.isLoading = false;
+            })
+            .addCase(getMorePosts.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getMorePosts.fulfilled, (state, action) => {
+                action.payload.forEach((post) => {
+                    state.posts.push(post);
+                });
                 state.isLoading = false;
             }),
 });

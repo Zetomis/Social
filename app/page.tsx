@@ -7,9 +7,8 @@ const RootPage = () => {
             <div className="container">
                 <h1>Left</h1>
             </div>
-            <div>
+            <div className="flex flex-col gap-y-4">
                 <NewPostForm />
-                <h6>Some thing here...</h6>
                 <PostsDisplay />
             </div>
             <div className="container">
