@@ -1,8 +1,10 @@
 "use client";
 
-import { getMultiplePosts } from "@/state/features/postsSlice";
+import { getMultiplePosts, getTotalPosts } from "@/state/features/postsSlice";
 import { useAppDispatch, useAppSelector } from "@/state/hooks";
 import { useEffect } from "react";
+import PostCard from "../cards/PostCard";
+import NextPageButton from "./NextPageButton";
 
 const PostsDisplay = () => {
     const posts = useAppSelector((state) => state.posts);
@@ -10,11 +12,12 @@ const PostsDisplay = () => {
 
     useEffect(() => {
         dispatch(getMultiplePosts());
+        dispatch(getTotalPosts());
     }, []);
 
     if (posts.isLoading) {
         return (
-            <div>
+            <div className="container">
                 <h1>Loading...</h1>
             </div>
         );
@@ -22,18 +25,18 @@ const PostsDisplay = () => {
 
     if (!posts.posts) {
         return (
-            <div>
+            <div className="container">
                 <h1>There is no post</h1>
             </div>
         );
     }
 
     return (
-        <div className="container">
-            <h1>ye</h1>
+        <div className="container grid">
             {posts.posts.map((post) => (
-                <h1>{post.content}</h1>
+                <PostCard post={post} key={post.id} />
             ))}
+            <NextPageButton />
         </div>
     );
 };
