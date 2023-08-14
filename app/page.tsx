@@ -4,14 +4,14 @@ import PostsDisplay from "@/components/previews/PostsDisplay";
 const RootPage = () => {
     return (
         <div className="layout">
-            <div className="container">
+            <div className="container h-fit">
                 <h1>Left</h1>
             </div>
             <div className="flex flex-col gap-y-4">
                 <NewPostForm />
                 <PostsDisplay />
             </div>
-            <div className="container">
+            <div className="container h-fit">
                 <h1>Right</h1>
             </div>
         </div>
